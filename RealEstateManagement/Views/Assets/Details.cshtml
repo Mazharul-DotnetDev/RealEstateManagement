@@ -1,0 +1,47 @@
+﻿@model RealEstateManagement.Models.Asset
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details of Asset</h1>
+
+<div>
+    <h4>Asset Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PropertyName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PropertyName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.P_Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.P_Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberOfUnits)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfUnits)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RentAmount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RentAmount)
+        </dd>
+    </dl>
+
+    @await Component.InvokeAsync("ItemList", Model.OwnerList)
+
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.AssetId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+

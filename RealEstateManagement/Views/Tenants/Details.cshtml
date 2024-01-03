@@ -1,0 +1,39 @@
+﻿@model RealEstateManagement.Models.Tenant
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Tenant</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TenantName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TenantName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TenantImage)
+        </dt>
+        <dd class="col-sm-10">
+            <figure>
+                <img src="@Model.TenantImage" width="100" />
+                <figcaption>@Model.TenantImage</figcaption>
+            </figure>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeaseStartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeaseStartDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.TenantId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

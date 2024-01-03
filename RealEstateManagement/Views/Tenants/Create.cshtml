@@ -1,0 +1,50 @@
+﻿@model RealEstateManagement.Models.Tenant
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Tenant</h4>
+<hr />
+<div class="row">
+
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="TenantName" class="control-label"></label>
+            <input asp-for="TenantName" class="form-control" />
+            <span asp-validation-for="TenantName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="T_ContactInformation" class="control-label"></label>
+            <input asp-for="T_ContactInformation" class="form-control" />
+            <span asp-validation-for="T_ContactInformation" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageUpload" class="control-label"></label>
+            <input asp-for="ImageUpload" class="form-control" type="file" />
+            <span asp-validation-for="ImageUpload" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LeaseStartDate" class="control-label"></label>
+            <input asp-for="LeaseStartDate" class="form-control" />
+            <span asp-validation-for="LeaseStartDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

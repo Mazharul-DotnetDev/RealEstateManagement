@@ -1,0 +1,106 @@
+﻿@model IEnumerable<RealEstateManagement.Models.Asset>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" id="data">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.P_Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfUnits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="data-@item.AssetId">
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfUnits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentAmount)
+                </td>
+                <td>
+                    <a class="btn btn-outline-warning" asp-action="Edit" asp-action="Edit" asp-route-id="@item.AssetId">Edit</a> |
+                    <a class="btn btn-outline-info" asp-action="Details" asp-action="Details" asp-route-id="@item.AssetId">Details</a> |
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-action="Delete" asp-route-id="@item.AssetId">Delete</a>
+
+
+                    <button class="btn  btn-outline-success btn-icon-split" onclick="ajaxDelete(@item.AssetId)">
+                        Ajax Delete
+                    </button>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                Grand Total = @ViewBag.GrandTotal and No of Assets is @ViewBag.Count and Average amount is @ViewBag.Average
+            </td>
+        </tr>
+    </tfoot>
+
+
+
+</table>
+
+
+
+@section Scripts {
+
+    <script>
+
+        function ajaxDelete(id) {
+
+            var ok = confirm(`Delete Asset?`);
+
+            if (ok) {
+                $.ajax({
+
+                    url: "/deleteasset/" + id,
+                    type: "delete",
+
+
+                    success: function () {
+                        alert("success");
+
+                        $('#data-' + id).remove();
+                    }
+                });
+            }
+
+        }
+
+    </script>
+
+
+}

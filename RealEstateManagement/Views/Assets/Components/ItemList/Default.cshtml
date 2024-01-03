@@ -1,0 +1,53 @@
+﻿@model List<Owner>
+
+<table class="table table-responsive table-hover table-bordered table-striped">
+
+	<thead>
+		<tr>
+			<th>
+				Tenant Name
+			</th>
+			<th>
+				Lease Starting Date
+			</th>
+			<th>
+				Owner Contact Information
+			</th>
+			<th>
+				Total Yearly Income
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@item.GetTenant?.TenantName
+				</td>
+				<td>
+					@item.GetTenant?.LeaseStartDate
+				</td>
+				<td>
+					<input asp-for="@item.Own_ContactInformation" class="form-control" readonly />
+				</td>
+				<td>
+					<input asp-for="@item.TotalYearlyIncome" class="form-control" readonly />
+				</td>
+			</tr>
+		}
+
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="4">
+				Asset Total = @ViewBag.Total and No of Owner is @ViewBag.Count
+
+				
+			</td>
+		</tr>
+	</tfoot>
+
+</table>

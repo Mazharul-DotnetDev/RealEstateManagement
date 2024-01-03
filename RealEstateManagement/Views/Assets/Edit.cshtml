@@ -1,0 +1,107 @@
+﻿@model RealEstateManagement.Models.Asset
+
+@inject EstateContext db
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Asset</h4>
+<hr />
+<div class="row">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="AssetId" />
+        <div class="form-group">
+            <label asp-for="PropertyName" class="control-label"></label>
+            <input asp-for="PropertyName" class="form-control" />
+            <span asp-validation-for="PropertyName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="P_Address" class="control-label"></label>
+            <input asp-for="P_Address" class="form-control" />
+            <span asp-validation-for="P_Address" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NumberOfUnits" class="control-label"></label>
+            <input asp-for="NumberOfUnits" class="form-control" />
+            <span asp-validation-for="NumberOfUnits" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RentAmount" class="control-label"></label>
+            <input asp-for="RentAmount" class="form-control" />
+            <span asp-validation-for="RentAmount" class="text-danger"></span>
+        </div>
+
+
+        <br />
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Tenant Name
+                    </th>
+                    <th>
+                        Owner Name
+                    </th>
+                    <th>
+                        Salary
+                    </th>
+                    <th>
+                        Owner Contact Information
+                    </th>
+                    <th>
+                        <input type="submit" value="Add" name="command" class="btn btn-success " />
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @for (int i = 0; i < Model.OwnerList.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <select asp-for="OwnerList[i].TenantId" asp-items="db.TenantTble.Select(p=> new SelectListItem(){Text = p.TenantName,Value = p.TenantId.ToString() })">
+                            </select>
+                        </td>
+
+                        <td>
+                            <input asp-for="OwnerList[i].OwnerName" class="form-control" />
+                        </td>
+                        <td>
+                            <input asp-for="OwnerList[i].Salary" class="form-control" />
+                        </td>
+                        <td>
+                            <input asp-for="OwnerList[i].Own_ContactInformation" class="form-control" />
+                        </td>
+                        <td>
+                            <button value="delete-@i" name="command">Delete</button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+
+        </table>
+
+        <hr />
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

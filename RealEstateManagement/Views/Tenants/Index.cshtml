@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RealEstateManagement.Models.Tenant>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenantName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenantImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaseStartDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenantName)
+                </td>
+                <td>
+                    <figure>
+                        <img src="@item.TenantImage" width="100" />
+                        <figcaption>@item.TenantName</figcaption>
+                    </figure>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeaseStartDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TenantId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.TenantId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TenantId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
