@@ -47,7 +47,7 @@ The current version lays a solid foundation for further enhancements, such as:
 
 **Contribution:**
 
-We welcome contributions to enhance and expand the functionalities of this Estate Management System. Feel free to fork the repository, submit pull requests, and share your valuable insights.
+I welcome contributions to enhance and expand the functionalities of this Estate Management System. Feel free to fork the repository, submit pull requests, and share your valuable insights.
 
 **Disclaimer:**
 
